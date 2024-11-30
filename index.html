@@ -12,11 +12,16 @@
                  document.getElementById("demo").innerHTML = alert(this.responseText);
                  }
              };
-              xhr.open("GET",
-                       "https://preprodhobs.tataplayfiber.com/api/getUsersList", true);
-              xhr.setRequestHeader("Cookie", "JWT_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJBZG1pbiIsImlhdCI6MTczMjkzNjc2MiwiZXhwIjoxNzMyOTM3OTYyfQ.XTqQ_rt9HNm01fOisV7MavF5RcDZVXToWSDf66acKJ8");
-             xhr.withCredentials = true;
-             xhr.send();
+             //  xhr.open("GET",
+             //           "https://preprodhobs.tataplayfiber.com/api/getUsersList", true);
+             //  xhr.setRequestHeader("Cookie", "JWT_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJBZG1pbiIsImlhdCI6MTczMjkzNjc2MiwiZXhwIjoxNzMyOTM3OTYyfQ.XTqQ_rt9HNm01fOisV7MavF5RcDZVXToWSDf66acKJ8");
+             // xhr.withCredentials = true;
+               
+             // xhr.send();
+               xhr.open("POST", "https://uathobs.tataplayfiber.co.in/api/login", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", "Bearer QWRtaW46U2VwQDIwMjQ=");  // Example Authorization header
+    xhr.send(JSON.stringify({ userId: "Admin" }));
              }
          </script>
      </body>
